@@ -12,16 +12,15 @@ const products = require('./routes/products');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb+srv://admin:1234@cluster0.phv96.mongodb.net/')
+mongoose.connect('mongodb+srv://admin:1234@cluster0.phv96.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
         .then(()=> console.log('connection suscessfully!'))
-        .catch((err)=> console.error(err))
-
+        .catch((err) => console.error('Error connecting to MongoDB:', err));
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
