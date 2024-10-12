@@ -2,10 +2,25 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Data Display</h1>
+    <button onclick="fetchData()">Show All Data</button>
+    <div id="data-display"></div>
+    <script>
+      const fetchData = () => {
+        fetch('/getData')  // Fetch data from the new route '/getData'
+          .then(response => response.json())
+          .then(data => {
+            let output = '<ul>';
+            data.forEach(product => {
+              output += `<li>${product.prod_name} - price = ${product.prod_price}<br> - ${product.prod_desc} - update_at = ${product.update_at}  </li>`;  // Customize to fit your product schema
+            });
+            output += '</ul>';
+            document.getElementById('data-display').innerHTML = output;  // Display data
+          })
+          .catch(err => console.log('Error:', err));};
+    </script>
   </body>
 </html>

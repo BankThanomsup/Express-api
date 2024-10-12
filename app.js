@@ -10,9 +10,10 @@ const mongoose = require('mongoose');
 const products = require('./routes/products');
 
 
+
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb+srv://admin:1234@cluster0.phv96.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect('mongodb+srv://admin:1234@cluster0.phv96.mongodb.net/')
         .then(()=> console.log('connection suscessfully!'))
         .catch((err) => console.error('Error connecting to MongoDB:', err));
 
